@@ -56,11 +56,35 @@ namespace Calculator
 
             void Promenna()
             {
+                bool promennaKontrolaBoolean; //promenny pro kontrolu jestli uzivatel zadal za promennou opravdu cislo
+                string promennaKontrola;
+                string promennaInput;
+                bool promennaInputBoolean;
+
                 Console.WriteLine("Jak se bude jmenovat?");
                 nazevP = Console.ReadLine();
                 Console.WriteLine("Jakou bude mít hodnotu?");
-                p = Convert.ToDouble(Console.ReadLine());
-                a = p;
+                promennaKontrola = Console.ReadLine();
+                promennaKontrolaBoolean = double.TryParse(promennaKontrola, out p);
+
+                if (promennaKontrolaBoolean == true)
+                {
+                    a = p;
+                }
+                else 
+                {
+                    while (true)
+                    {
+                        Console.WriteLine("Napsal si nesmysl, prosim zadej cislo");
+                        promennaInput = (Console.ReadLine());
+                        promennaInputBoolean = double.TryParse(promennaInput, out p);
+                        if (promennaInputBoolean == true)
+                        {
+                            break;
+                        }
+                    }
+                }
+
                 Calculator();
             }
 
