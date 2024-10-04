@@ -37,22 +37,38 @@ namespace Calculator
              * 3) Umozni uzivateli zadavat i desetinna cisla, tedy prekopej kalkulacku tak, aby umela pracovat s floaty
              */
 
-            string promenna;
-            double p = 0;
-            string nazevP;
-            double a = 0;
+            string promenna; //promenna ano/ne jestli uzivatel chce zadat promennou 
+            double p = 0;  //hodnota promenne
+            string nazevP = "***"; //aby vs nekricelo, ze je nedefinovana promenna
+            double a = 0;  //prvni cislo/promenna
             Console.WriteLine("Chceš zadat promennou? (ano/ne)");
             promenna = Console.ReadLine();
-            if (promenna == "ano")
+            if (promenna == "ano")      //kontorla jestli uzivatel umi napsat ano/ne
             {
                 Promenna();
             }
-
             else
             {
-                nazevP = "******"; //aby vs nekricelo, ze je nedefinovana promenna
-                Calculator();
+                if (promenna == "ne")
+                {
+                    Calculator();       //bez promenne
+                }
+                while (promenna != "ano")
+                {
+                    Console.WriteLine("Napsal si nesmysl, zadej ano/ne");
+                    promenna = Console.ReadLine();
+                    if (promenna == "ano")
+                    {
+                        Promenna();     //chci zadat promennou
+                    }
+                    else if (promenna == "ne") 
+                    { 
+                        Calculator();       //bez promenne 
+                    }
+                
+                }
             }
+
 
             void Promenna()
             {
