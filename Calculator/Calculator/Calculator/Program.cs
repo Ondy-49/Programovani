@@ -37,31 +37,31 @@ namespace Calculator
              * 3) Umozni uzivateli zadavat i desetinna cisla, tedy prekopej kalkulacku tak, aby umela pracovat s floaty
              */
 
-            string promenna; //promenna ano/ne jestli uzivatel chce zadat promennou 
+            string variable; //promenna ano/ne jestli uzivatel chce zadat promennou 
             double p = 0;  //hodnota promenne
-            string nazevP = "***"; //aby vs nekricelo, ze je nedefinovana promenna
+            string variableName = "***"; //aby vs nekricelo, ze je nedefinovana promenna
             double a = 0;  //prvni cislo/promenna
             Console.WriteLine("Chceš zadat promennou? (ano/ne)");
-            promenna = Console.ReadLine();
-            if (promenna == "ano")      //kontorla jestli uzivatel umi napsat ano/ne
+            variable = Console.ReadLine();
+            if (variable == "ano")      //kontorla jestli uzivatel umi napsat ano/ne
             {
-                Promenna();
+                Variable();
             }
             else
             {
-                if (promenna == "ne")
+                if (variable == "ne")
                 {
                     Calculator();       //bez promenne
                 }
-                while (promenna != "ano")
+                while (variable != "ano")
                 {
                     Console.WriteLine("Napsal si nesmysl, zadej ano/ne");
-                    promenna = Console.ReadLine();
-                    if (promenna == "ano")
+                    variable = Console.ReadLine();
+                    if (variable == "ano")
                     {
-                        Promenna();     //chci zadat promennou
+                        Variable();     //chci zadat promennou
                     }
-                    else if (promenna == "ne") 
+                    else if (variable == "ne") 
                     { 
                         Calculator();       //bez promenne 
                     }
@@ -70,20 +70,20 @@ namespace Calculator
             }
 
 
-            void Promenna()
+            void Variable()
             {
-                bool promennaKontrolaBoolean; //promenny pro kontrolu jestli uzivatel zadal za promennou opravdu cislo
-                string promennaKontrola;
-                string promennaInput;
-                bool promennaInputBoolean;
+                bool variableCheckBoolean; //promenny pro kontrolu jestli uzivatel zadal za promennou opravdu cislo
+                string variableCheck;
+                string variableInput;
+                bool variableInputBoolean;
 
                 Console.WriteLine("Jak se bude jmenovat?");
-                nazevP = Console.ReadLine();
+                variableName = Console.ReadLine();
                 Console.WriteLine("Jakou bude mít hodnotu?");
-                promennaKontrola = Console.ReadLine();
-                promennaKontrolaBoolean = double.TryParse(promennaKontrola, out p);
+                variableCheck = Console.ReadLine();
+                variableCheckBoolean = double.TryParse(variableCheck, out p);
 
-                if (promennaKontrolaBoolean == true)
+                if (variableCheckBoolean == true)
                 {
                     a = p;
                 }
@@ -92,9 +92,9 @@ namespace Calculator
                     while (true)
                     {
                         Console.WriteLine("Napsal si nesmysl, prosim zadej cislo");
-                        promennaInput = (Console.ReadLine());
-                        promennaInputBoolean = double.TryParse(promennaInput, out p);
-                        if (promennaInputBoolean == true)
+                        variableInput = (Console.ReadLine());
+                        variableInputBoolean = double.TryParse(variableInput, out p);
+                        if (variableInputBoolean == true)
                         {
                             break;
                         }
@@ -119,7 +119,7 @@ namespace Calculator
 
                 Console.WriteLine("Zadej první číslo/Proměnnou:");
                 input = (Console.ReadLine());
-                if (input == nazevP) //pokud jsem zvolil jako hodnotu predem definovanou promennou
+                if (input == variableName) //pokud jsem zvolil jako hodnotu predem definovanou promennou
                 {
                     a = p;
                     Operator();
@@ -127,7 +127,7 @@ namespace Calculator
                 else
                 {
                     userInputA = double.TryParse(input, out a);            //zjistuji, jestli uzivatel zadal cislo
-                    while (userInputA == false && Convert.ToString(input) != nazevP)
+                    while (userInputA == false && Convert.ToString(input) != variableName)
                     {
                         Console.WriteLine("Napsal si nesmysl, prosim zadej cislo");
                         input = (Console.ReadLine());
@@ -136,7 +136,7 @@ namespace Calculator
                         {
                             break;
                         }
-                        else if (Convert.ToString(input) == nazevP)
+                        else if (Convert.ToString(input) == variableName)
                         {
                             a = p;
                             break;
@@ -163,7 +163,7 @@ namespace Calculator
 
                     Console.WriteLine("Zadej druhé číslo/Proměnnou:");
                     inputB = Console.ReadLine();
-                    if (inputB == nazevP) //pokud jsem i jako druhou hodnotu zvolil predem definovanou promennou
+                    if (inputB == variableName) //pokud jsem i jako druhou hodnotu zvolil predem definovanou promennou
                     {
                         b = p;
 
@@ -171,7 +171,7 @@ namespace Calculator
                     else
                     {
                             userInputB = double.TryParse(inputB, out b);            //zjistuji, jestli uzivatel zadal cislo
-                            while (userInputB == false && Convert.ToString(inputB) != nazevP)
+                            while (userInputB == false && Convert.ToString(inputB) != variableName)
                             {
                                 Console.WriteLine("Napsal si nesmysl, prosim zadej cislo");
                                 inputB = (Console.ReadLine());
@@ -180,7 +180,7 @@ namespace Calculator
                                 {
                                     break;
                                 }
-                                else if (Convert.ToString(inputB) == nazevP) //zadal nazev promenny 
+                                else if (Convert.ToString(inputB) == variableName) //zadal nazev promenny 
                                 {
                                     b = p;
                                     break;
@@ -196,7 +196,7 @@ namespace Calculator
                 {
                     Console.WriteLine("Zadej druhé číslo/Proměnnou:");
                     inputB = Console.ReadLine();
-                    if (inputB == nazevP)
+                    if (inputB == variableName)
                     {
                         b = p;
 
@@ -204,7 +204,7 @@ namespace Calculator
                         else
                         {
                             userInputB = double.TryParse(inputB, out b);            //zjistuji, jestli uzivatel zadal cislo
-                            while (userInputB == false && Convert.ToString(inputB) != nazevP)
+                            while (userInputB == false && Convert.ToString(inputB) != variableName)
                             {
                                 Console.WriteLine("Napsal si nesmysl, prosim zadej cislo");
                                 inputB = (Console.ReadLine());
@@ -213,7 +213,7 @@ namespace Calculator
                                 {
                                     break;
                                 }
-                                else if (Convert.ToString(inputB) == nazevP)
+                                else if (Convert.ToString(inputB) == variableName)
                                 {
                                     b = p;
                                     break;
@@ -229,7 +229,7 @@ namespace Calculator
                 {
                     Console.WriteLine("Zadej druhé číslo/Proměnnou:");
                     inputB = Console.ReadLine();
-                    if (inputB == nazevP)
+                    if (inputB == variableName)
                     {
                         b = p;
 
@@ -237,7 +237,7 @@ namespace Calculator
                         else
                         {
                             userInputB = double.TryParse(inputB, out b);            //zjistuji, jestli uzivatel zadal cislo
-                            while (userInputB == false && Convert.ToString(inputB) != nazevP)
+                            while (userInputB == false && Convert.ToString(inputB) != variableName)
                             {
                                 Console.WriteLine("Napsal si nesmysl, prosim zadej cislo");
                                 inputB = (Console.ReadLine());
@@ -246,7 +246,7 @@ namespace Calculator
                                 {
                                     break;
                                 }
-                                else if (Convert.ToString(inputB) == nazevP)
+                                else if (Convert.ToString(inputB) == variableName)
                                 {
                                     b = p;
                                     break;
@@ -262,7 +262,7 @@ namespace Calculator
                 {
                     Console.WriteLine("Zadej druhé číslo/Proměnnou:");
                     inputB = Console.ReadLine();
-                    if (inputB == nazevP)
+                    if (inputB == variableName)
                     {
                         b = p;
 
@@ -270,7 +270,7 @@ namespace Calculator
                         else
                         {
                             userInputB = double.TryParse(inputB, out b);            //zjistuji, jestli uzivatel zadal cislo
-                            while (userInputB == false && Convert.ToString(inputB) != nazevP)
+                            while (userInputB == false && Convert.ToString(inputB) != variableName)
                             {
                                 Console.WriteLine("Napsal si nesmysl, prosim zadej cislo");
                                 inputB = (Console.ReadLine());
@@ -279,7 +279,7 @@ namespace Calculator
                                 {
                                     break;
                                 }
-                                else if (Convert.ToString(inputB) == nazevP) //zadal nazev promenny
+                                else if (Convert.ToString(inputB) == variableName) //zadal nazev promenny
                                 {
                                     b = p;
                                     break;
@@ -295,7 +295,7 @@ namespace Calculator
                 {
                     Console.WriteLine("Zadej druhé číslo/Proměnnou:");
                     inputB = Console.ReadLine();
-                    if (inputB == nazevP)
+                    if (inputB == variableName)
                     {
                         b = p;
 
@@ -303,7 +303,7 @@ namespace Calculator
                         else
                         {
                             userInputB = double.TryParse(inputB, out b);            //zjistuji, jestli uzivatel zadal cislo
-                            while (userInputB == false && Convert.ToString(inputB) != nazevP)
+                            while (userInputB == false && Convert.ToString(inputB) != variableName)
                             {
                                 Console.WriteLine("Napsal si nesmysl, prosim zadej cislo");
                                 inputB = (Console.ReadLine());
@@ -312,7 +312,7 @@ namespace Calculator
                                 {
                                     break;
                                 }
-                                else if (Convert.ToString(inputB) == nazevP)
+                                else if (Convert.ToString(inputB) == variableName)
                                 {
                                     b = p;
                                     break;
