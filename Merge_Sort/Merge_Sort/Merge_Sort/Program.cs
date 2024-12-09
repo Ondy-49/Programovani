@@ -29,7 +29,7 @@ namespace Merge_Sort
             arrayTwo = SplitArray(arrayTwo);
             return MergeArray(arrayOne, arrayTwo);
         }
-        /*static int[] MergeArray(int[] arrayOne, int[] arrayTwo) 
+        static int[] MergeArray(int[] arrayOne, int[] arrayTwo) 
         {
             int[] arrayFinal = new int[arrayOne.Length + arrayTwo.Length];
             int finalArrayLength = arrayOne.Length + arrayTwo.Length;
@@ -40,47 +40,47 @@ namespace Merge_Sort
             int lengthTwo = arrayTwo.Length;
             List<int> listOne = arrayOne.ToList();
             List<int> listTwo = arrayTwo.ToList();
-            while(lengthOne != 0 && arrayTwo.Length != 0)
+            while(listOne.Count != 0 && listTwo.Count != 0)
             {
-                if (listOne[i] < listTwo[i])
+                if (listOne[0] < listTwo[0])
                 {
-                    arrayFinal[finalArrayLength - i] = listTwo[iTwo];
+                    arrayFinal[i] = listOne[iOne];
                     
-                    listTwo.RemoveAt(iTwo);
-                    lengthTwo--;
-                    iTwo++;
+                    listOne.RemoveAt(iOne);
+                    //lengthOne--;
+                    //iOne++;
                 }
                 else 
                 {
-                    arrayFinal[finalArrayLength - i] = listOne[iOne];
+                    arrayFinal[i] = listTwo[iTwo];
                     
-                    listOne.RemoveAt(iOne);
-                    lengthOne--;
-                    iOne++;
+                    listTwo.RemoveAt(iTwo);
+                    //lengthTwo--;
+                    //iTwo++;
                 }
                 i++;
             }
-            while(lengthOne != 0 && lengthTwo == 0)
+            while(listOne.Count != 0)
             {
                 arrayFinal[i] = listOne[iOne];
-                iOne++;
                 listOne.RemoveAt(iOne);
+                //iOne++;
                 i++;
-                lengthOne--;
+                //lengthOne--;
             } 
-            while (lengthOne == 0 && lengthTwo != 0)
+            while (listTwo.Count != 0)
             {
                 arrayFinal[i] = listTwo[iTwo];
-                iTwo++;
+                //iTwo++;
                 listTwo.RemoveAt(iTwo);
                 i++;
-                lengthTwo--;
+                //lengthTwo--;
             }
 
             return arrayFinal;
-        }*/
+        }
 
-        static int[] MergeArray(int[] arrayOne, int[] arrayTwo)
+        /*static int[] MergeArray(int[] arrayOne, int[] arrayTwo)
         {
             int[] arrayFinal = new int[arrayOne.Length + arrayTwo.Length];
             int iOne = 0, iTwo = 0, iFinal = 0;
@@ -118,7 +118,7 @@ namespace Merge_Sort
             }
 
             return arrayFinal;
-        }
+        }*/
         static void Main(string[] args)
         {
             int[] array = new int[1000];
