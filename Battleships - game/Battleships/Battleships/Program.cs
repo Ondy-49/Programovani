@@ -18,7 +18,7 @@ namespace Battleships
             bool validShot = false;
             while (!validShot)
             {
-                Console.WriteLine("S: STANDARD SHOT   B: BOMB (3x3 cross shape)   L: LONG BOMBARDING (2x1)   A: ANALYZE FIELD (2x2)");
+                Console.WriteLine("S: STANDARD SHOT   B: BOMB (3x3 cross shape)   L: LONG BOMBARDING (2x1)   A: ANALYZE FIELD (3x3) (works as a sonar for the duration of one turn)");
                 Console.WriteLine("You can use BOMB just once, LONG BOMBARDING and ANAZYLER twice and STANDARD SHOT unlimited times");
                 shotType = Console.ReadLine();
                 while (shotType != "S" && shotType != "B" && shotType != "L" && shotType != "A") 
@@ -62,7 +62,7 @@ namespace Battleships
                         Console.WriteLine("enter a valid statement");
                         selectedCollumn = Console.ReadLine();
                     }
-                    if (b < 100) { b++; validShot = true; }
+                    if (b < 1) { b++; validShot = true; }
                     else Console.WriteLine("You are out off BOMBS!");
                 }
                 else if (shotType == "L")
@@ -94,7 +94,7 @@ namespace Battleships
                 }
                 else if (shotType == "A")
                 {
-                    Console.WriteLine("you will now be selecting coordinates for the bottom left of the shot");
+                    Console.WriteLine("you will now be selecting coordinates for the middle of the square");
                     Console.WriteLine("Select a row 0 - 9");
                     string selectedRow = Console.ReadLine();
                     while (!int.TryParse(selectedRow, out sRow) || sRow > 9 || sRow < 0)
@@ -574,7 +574,7 @@ namespace Battleships
             return (true, true, validShipTypeL, validShipTypeB, validShipTypeK, validShipTypeP, validShipTypeT);
         }
 
-        static (char[,], int, int, int, int, int) PlaceShip(char[,] currentField, int row, int col, string type, string orientation, ref int shipsPlaced, ref int validShipTypeL, ref int validShipTypeB, ref int validShipTypeK, ref int validShipTypeP, ref int validShipTypeT)
+        static (char[,], int, int, int, int, int) PlaceShip(char[,] currentField, int row, int col, string type, string orientation, ref int validShipTypeL, ref int validShipTypeB, ref int validShipTypeK, ref int validShipTypeP, ref int validShipTypeT)
         {
             if (orientation == "vertically")
             {
@@ -587,7 +587,7 @@ namespace Battleships
                         {
                             Console.WriteLine("ship cannot be placed here");
 
-                            SetShips(currentField, ref validShipTypeL, ref validShipTypeB, ref validShipTypeK, ref validShipTypeP, ref validShipTypeT);
+                            return(currentField, validShipTypeL, validShipTypeB, validShipTypeK, validShipTypeP, validShipTypeT);
                         }
                     }
                     validShipTypeL++;
@@ -604,7 +604,7 @@ namespace Battleships
                         if (currentField[y, col] == 'X')
                         {
                             Console.WriteLine("ship cannot be placed here");
-                            SetShips(currentField, ref validShipTypeL, ref validShipTypeB, ref validShipTypeK, ref validShipTypeP, ref validShipTypeT);
+                            return(currentField, validShipTypeL, validShipTypeB, validShipTypeK, validShipTypeP, validShipTypeT);
                         }
                     }
                     validShipTypeB++;
@@ -621,7 +621,7 @@ namespace Battleships
                         if (currentField[y, col] == 'X')
                         {
                             Console.WriteLine("ship cannot be placed here");
-                            SetShips(currentField, ref validShipTypeL, ref validShipTypeB, ref validShipTypeK, ref validShipTypeP, ref validShipTypeT);
+                            return(currentField, validShipTypeL, validShipTypeB, validShipTypeK, validShipTypeP, validShipTypeT);
                         }
 
                     }
@@ -640,7 +640,7 @@ namespace Battleships
                         if (currentField[y, col] == 'X')
                         {
                             Console.WriteLine("ship cannot be placed here");
-                            SetShips(currentField, ref validShipTypeL, ref validShipTypeB, ref validShipTypeK, ref validShipTypeP, ref validShipTypeT);
+                            return(currentField, validShipTypeL, validShipTypeB, validShipTypeK, validShipTypeP, validShipTypeT);
                         }
 
                     }
@@ -658,7 +658,7 @@ namespace Battleships
                         if (currentField[y, col] == 'X')
                         {
                             Console.WriteLine("ship cannot be placed here");
-                            SetShips(currentField, ref validShipTypeL, ref validShipTypeB, ref validShipTypeK, ref validShipTypeP, ref validShipTypeT);
+                            return(currentField, validShipTypeL, validShipTypeB, validShipTypeK, validShipTypeP, validShipTypeT);
                         }
 
                     }
@@ -679,7 +679,7 @@ namespace Battleships
                         if (currentField[row, x] == 'X')
                         {
                             Console.WriteLine("ship cannot be placed here");
-                            SetShips(currentField, ref validShipTypeL, ref validShipTypeB, ref validShipTypeK, ref validShipTypeP, ref validShipTypeT);
+                            return(currentField, validShipTypeL, validShipTypeB, validShipTypeK, validShipTypeP, validShipTypeT);
                         }
                     }
                     validShipTypeL++;
@@ -695,7 +695,7 @@ namespace Battleships
                         if (currentField[row, x] == 'X')
                         {
                             Console.WriteLine("ship cannot be placed here");
-                            SetShips(currentField, ref validShipTypeL, ref validShipTypeB, ref validShipTypeK, ref validShipTypeP, ref validShipTypeT);
+                            return(currentField, validShipTypeL, validShipTypeB, validShipTypeK, validShipTypeP, validShipTypeT);
                         }
                     }
                     validShipTypeB++;
@@ -711,7 +711,7 @@ namespace Battleships
                         if (currentField[row, x] == 'X')
                         {
                             Console.WriteLine("ship cannot be placed here");
-                            SetShips(currentField, ref validShipTypeL, ref validShipTypeB, ref validShipTypeK, ref validShipTypeP, ref validShipTypeT);
+                            return(currentField, validShipTypeL, validShipTypeB, validShipTypeK, validShipTypeP, validShipTypeT);
                         }
                     }
                     validShipTypeK++;
@@ -727,7 +727,7 @@ namespace Battleships
                         if (currentField[row, x] == 'X')
                         {
                             Console.WriteLine("ship cannot be placed here");
-                            SetShips(currentField, ref validShipTypeL, ref validShipTypeB, ref validShipTypeK, ref validShipTypeP, ref validShipTypeT);
+                            return(currentField, validShipTypeL, validShipTypeB, validShipTypeK, validShipTypeP, validShipTypeT);
                         }
                     }
                     validShipTypeP++;
@@ -743,7 +743,7 @@ namespace Battleships
                         if (currentField[row, x] == 'X')
                         {
                             Console.WriteLine("ship cannot be placed here");
-                            SetShips(currentField, ref validShipTypeL, ref validShipTypeB, ref validShipTypeK, ref validShipTypeP, ref validShipTypeT);
+                            return(currentField, validShipTypeL, validShipTypeB, validShipTypeK, validShipTypeP, validShipTypeT);
                         }
                     }
                     validShipTypeT++;
@@ -757,16 +757,14 @@ namespace Battleships
         }
 
         static char[,] SetShips(char[,] playersField, ref int validShipTypeL, ref int validShipTypeB, ref int validShipTypeK, ref int validShipTypeP, ref int validShipTypeT)
-        {
-            PlayerFieldPrint(playersField);
-            Console.WriteLine("Lets set your ships. First select a row then collumn for you ship.");
-            Console.WriteLine("This place will represent the most left bottom part of your ship.");
-            Console.WriteLine("Next, you will select which ship you want to place there and its orientation.");
-            var validPosition = (false, true, 0, 0, 0, 0, 0);
-            int shipsPlaced = 0;
-            
+        {   
+            var validPosition = (false, true, 0, 0, 0, 0, 0);            
             while (validShipTypeL + validShipTypeB + validShipTypeK + validShipTypeP + validShipTypeT <= 4)
             {
+                Console.WriteLine("Lets set your ships. First select a row then collumn for you ship.");
+                Console.WriteLine("This place will represent the most left bottom part of your ship.");
+                Console.WriteLine("Next, you will select which ship you want to place there and its orientation.");
+                PlayerFieldPrint(playersField);
                 Console.WriteLine("Select a row 0 - 9");
                 string selectedRow = Console.ReadLine();
                 int sRow; //user row input
@@ -810,9 +808,7 @@ namespace Battleships
                 else
                 {
                     Console.Clear();
-                    shipsPlaced++;
-                    PlaceShip(playersField, sRow, sCollumn, shipType, orientation, ref shipsPlaced, ref validShipTypeL, ref validShipTypeB, ref validShipTypeK, ref validShipTypeP, ref validShipTypeT);
-                    PlayerFieldPrint(playersField);
+                    PlaceShip(playersField, sRow, sCollumn, shipType, orientation, ref validShipTypeL, ref validShipTypeB, ref validShipTypeK, ref validShipTypeP, ref validShipTypeT);
                 }
 
             }
@@ -1194,7 +1190,7 @@ namespace Battleships
                 }
             }
             SetShips(playersField, ref validShipTypeL, ref validShipTypeB, ref validShipTypeK, ref validShipTypeP, ref validShipTypeT);
-
+            PlayerFieldPrint(playersField);
             char[,] computersField = new char[10, 10]; //pole pocitace
             for (int i = 0; i < computersField.GetLength(0); i++) //i jsou radky
             {
@@ -1230,6 +1226,7 @@ namespace Battleships
                     PlayerEditedFieldPrint(playersField);
                     turn--;
                 }
+                //Console.Clear();
             }
             if (playerWon) Console.WriteLine("YOU WON!!!");
             else Console.WriteLine("COMPUTER WON YOU BOZO!!!");
