@@ -50,7 +50,7 @@ namespace Tale_to_be_told
             {
                 Console.Clear();
                 string[] texts = { "”If you're looking to make that gear of yours stronger,” he grunts, eyeing your weapons, ”I can help—for a price.”",
-                                    "He gestures to the forge. ”Iron for your sword or mace, leather for your armor, and eternal energy for your void staff. But upgrades ain't free—gold is what gets the work done.”",
+                                    "He gestures to the forge. ”Iron for your sword, leather for your armor, and eternal energy for your void staff. But upgrades ain't free—gold is what gets the work done.”",
                                     "He crosses his arms, waiting. ”So, what’ll it be?”"};
 
                 for (int i = 0; i < texts.Length; i++) //aby to bylo vypsany hezky a hrac to mel lepsi sanci stihnout precist
@@ -332,15 +332,15 @@ namespace Tale_to_be_told
                 switch (rnd)
                 {
                     case 0:
-                        bandit.SetHealth();
+                        
 
                         while (correctInput)
                         {
-
+                            bandit.SetHealth();
                             Console.Clear();
                             Console.WriteLine("You met a bandit");
                             Console.WriteLine("Press E: to pass this enemy.    Press W: to attack");
-                            ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+                                ConsoleKeyInfo keyInfo = Console.ReadKey(true);
                             switch (keyInfo.Key)
                             {
                                 case ConsoleKey.E:
@@ -350,7 +350,8 @@ namespace Tale_to_be_told
 
                                 case ConsoleKey.W:
 
-                                    //correctInput = false;
+                                    correctInput = false;
+                                    bothAlive = true;
                                     while (bothAlive)
                                     {
                                         double playerStrikes = Math.Round(player.PlayerStrikes(BlacksmithVariables.weaponLevel), 2);
@@ -414,10 +415,11 @@ namespace Tale_to_be_told
                         }
                         break;
                     case 1:
-                        bandit.SetHealth();
-
+                        
+                        
                         while (correctInput)
                         {
+                            bandit.SetHealth();
                             Console.Clear();
                             Console.WriteLine("You met a bandit");
                             Console.WriteLine("Press E: to pass this enemy.    Press W: to attack");
@@ -432,6 +434,7 @@ namespace Tale_to_be_told
                                 case ConsoleKey.W:
 
                                     correctInput = false;
+                                    bothAlive = true;
                                     while (bothAlive)
                                     {
                                         double playerStrikes = Math.Round(player.PlayerStrikes(BlacksmithVariables.weaponLevel), 2);
@@ -493,10 +496,11 @@ namespace Tale_to_be_told
                         }
                         break;
                     case 2:
-                        bandit.SetHealth();
-
+                        
+                        
                         while (correctInput)
                         {
+                            bandit.SetHealth();
                             Console.Clear();
                             Console.WriteLine("You met a bandit");
                             Console.WriteLine("Press E: to pass this enemy.    Press W: to attack");
@@ -511,6 +515,7 @@ namespace Tale_to_be_told
                                 case ConsoleKey.W:
 
                                     correctInput = false;
+                                    bothAlive = true;
                                     while (bothAlive)
                                     {
                                         double playerStrikes = Math.Round(player.PlayerStrikes(BlacksmithVariables.weaponLevel), 2);
@@ -571,10 +576,11 @@ namespace Tale_to_be_told
                         }
                         break;
                     case 3:
-                        knight.SetHealth();
-
+                        
+                        
                         while (correctInput)
                         {
+                            knight.SetHealth();
                             Console.Clear();
                             Console.WriteLine("You met a knight");
                             Console.WriteLine("Press E: to pass this enemy.    Press W: to attack");
@@ -589,6 +595,7 @@ namespace Tale_to_be_told
                                 case ConsoleKey.W:
 
                                     correctInput = false;
+                                    bothAlive = true;
                                     while (bothAlive)
                                     {
                                         double playerStrikes = Math.Round(player.PlayerStrikes(BlacksmithVariables.weaponLevel), 2);
@@ -650,10 +657,11 @@ namespace Tale_to_be_told
                         }
                         break;
                     case 4:
-                        vampire.SetHealth();
-
+                        
+                        
                         while (correctInput)
                         {
+                            vampire.SetHealth();
                             Console.Clear();
                             Console.WriteLine("You met a vampire");
                             Console.WriteLine("Press E: to pass this enemy.    Press W: to attack");
@@ -668,7 +676,7 @@ namespace Tale_to_be_told
                                 case ConsoleKey.W:
 
                                     correctInput = false;
-                                    correctInput = false;
+                                    bothAlive = true;
                                     while (bothAlive)
                                     {
                                         double playerStrikes = Math.Round(player.PlayerStrikes(BlacksmithVariables.weaponLevel), 2);
@@ -730,10 +738,11 @@ namespace Tale_to_be_told
                         }
                         break;
                     case 5:
-                        wizard.SetHealth();
-                        //
+                        
+                        
                         while (correctInput)
                         {
+                            wizard.SetHealth();
                             Console.Clear();
                             Console.WriteLine("You met a wizard");
                             Console.WriteLine("Press E: to pass this enemy.    Press W: to attack");
@@ -748,6 +757,7 @@ namespace Tale_to_be_told
                                 case ConsoleKey.W:
 
                                     correctInput = false;
+                                    bothAlive = true;
                                     while (bothAlive)
                                     {
                                         double playerStrikes = Math.Round(player.PlayerStrikes(BlacksmithVariables.weaponLevel), 2);
