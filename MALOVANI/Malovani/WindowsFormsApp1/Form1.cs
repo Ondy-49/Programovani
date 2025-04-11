@@ -187,8 +187,9 @@ namespace WindowsFormsApp1
             {
                 Image masterOfTheMovement = Properties.Resources.masterOfTheMovement;
                 Image resized = new Bitmap(masterOfTheMovement, new Size(width, height));
-                canvas = new Bitmap(resized); //tvorba noveho platna ve velikosti obrazku s pozadi obrazku, abych pres to mohl kreslit
-                pictureBox1.Image = canvas;
+                Graphics g = Graphics.FromImage(canvas);
+                g.DrawImage(resized, 0,0);
+                pictureBox1.Invalidate();
             }
             else
             {
